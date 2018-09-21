@@ -3,6 +3,7 @@ package RHODA.architectures.output;
 import RHODA.architectures.common.Configuration;
 import RHODA.architectures.api.Path;
 import RHODA.architectures.api.SrcDstPair;
+import RHODA.architectures.fattree.ConfigurationFT;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,5 +59,15 @@ public class Metrics {
       totalLoad += load;
     }
     return totalLoad / Configuration.getInstance().getNumOfRacks();
+  }
+
+  public static double calculateAvgRackLoadFT() {
+    double totalLoad = 0;
+    for (double load : rackIdRackLoadMap.values()) {
+      totalLoad += load;
+    }
+    int totalNumOfSwitches = ConfigurationFT.NUM_OF_EDGE_SWITCH +
+        ConfigurationFT.NUM_OF_AGG_SWITCH + ConfigurationFT.NUM_OF_CORE_SWITCH;
+    return totalLoad / totalNumOfSwitches;
   }
 }

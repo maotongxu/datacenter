@@ -86,6 +86,5 @@ public class InterClusterCommunication {
     SrcDstPair srcDstPair = new SrcDstPair(flow.getNodeIdSrc(), flow.getNodeIdDst());
     FlowInfo flowInfo = new FlowInfo(flow.getTraffic(), path.pathNodeIdListSize() - 1);
     Metrics.srcDstPairFlowInfoMap.put(srcDstPair, flowInfo);
-    System.out.println(path.pathNodeIdListSize() - 1);
   }
 }

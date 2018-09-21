@@ -14,6 +14,10 @@ public class ConfigurationFT {
   public static int NUM_OF_EDGE_SWITCH_PER_POD = K /2;				// the number of edge switches in each pod
   public static int NUM_OF_HOST_PER_EDGE_SWITCH = K /2;			// the number of hosts under each edge switch
 
+  public static int NUM_OF_EDGE_SWITCH = NUM_OF_POD * NUM_OF_EDGE_SWITCH_PER_POD;
+  public static int NUM_OF_AGG_SWITCH = NUM_OF_POD * NUM_OF_AGG_SWITCH_PER_POD;
+  public static int NUM_OF_CORE_SWITCH = NUM_OF_CORE_GROUP * NUM_OF_CORE_SWITCH_PER_GROUP;
+
   public static void setConfBasedOnMinNumOfRacks(final int minNumOfRacks) {
     double result = Math.cbrt((double) minNumOfRacks * 4);
     NUM_OF_PORT_PER_SWITCH = (int) Math.ceil(result);
@@ -28,5 +32,9 @@ public class ConfigurationFT {
     NUM_OF_AGG_SWITCH_PER_POD = K /2;
     NUM_OF_EDGE_SWITCH_PER_POD = K /2;
     NUM_OF_HOST_PER_EDGE_SWITCH = K /2;
+
+    NUM_OF_EDGE_SWITCH = NUM_OF_POD * NUM_OF_EDGE_SWITCH_PER_POD;
+    NUM_OF_AGG_SWITCH = NUM_OF_POD * NUM_OF_AGG_SWITCH_PER_POD;
+    NUM_OF_CORE_SWITCH = NUM_OF_CORE_GROUP * NUM_OF_CORE_SWITCH_PER_GROUP;
   }
 }

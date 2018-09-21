@@ -42,7 +42,6 @@ public class InterRackCommunication {
           flow.setTraffic(flow.getTraffic() - bd);
         }
         Metrics.addToOuptut(srcDstPair, path, bd);
-        System.out.println(path.pathNodeIdListSize() - 1);
       }
     }
   }

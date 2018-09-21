@@ -55,7 +55,7 @@ public class Scheduler {
     scheduler.start();
     outputSwitchLoad();
     System.out.println("NumOfHops " + Metrics.calculateAvgNumOfHops() +
-        " AvgRackLoad " + Metrics.calculateAvgRackLoad() +
+        " AvgRackLoad " + Metrics.calculateAvgRackLoadFT() +
         " TotalTraffic " + Metrics.calculateTotalTraffic());
   }
 }

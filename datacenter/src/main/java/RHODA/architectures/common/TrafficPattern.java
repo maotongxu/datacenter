@@ -45,7 +45,6 @@ public class TrafficPattern {
     } else if (trafficPattern == FACEBOOK_TRAFFIC) {
       flowMatrix = generateFBTraffic();
     }
-    System.out.println(Arrays.toString(flowMatrix[0]));
     return flowMatrix;
   }
 
@@ -61,8 +60,8 @@ public class TrafficPattern {
 
   private static double[][] importOneToMultipleTraffic() {
     double[][] flowMatrix = new double[numOfRacks][numOfRacks];
-    int interval = 1+rand.nextInt(16);
-    for (int src=0; src<numOfRacks; ) {
+    int interval = 1 + rand.nextInt(16);
+    for (int src = 0; src < numOfRacks; ) {
       for (int dst = src + 1; dst < src + interval && dst < numOfRacks; dst++) {
         flowMatrix[src][dst] = 2;
       }
@@ -124,7 +123,7 @@ public class TrafficPattern {
     return flowMatrix;
   }
 
-  private void loadTrafficToRacks(final double[][] flowMatrix) {
+  public void loadTrafficToRacks(final double[][] flowMatrix) {
     for (int src = 0; src < numOfRacks; src++) {
       for (int dst = 0; dst < numOfRacks; dst++) {
         if (src == dst || flowMatrix[src][dst] < Double.MIN_VALUE) {

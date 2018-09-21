@@ -66,7 +66,7 @@ public class InterRackTx {
         /**Add info to metrics storage */
         path.addPathNodeId(dstId);
         SrcDstPair srcDstPair = new SrcDstPair(srcId, dstId);
-        System.out.println(srcDstPair + " " + path.pathNodeIdListSize() + " " + feasibleTraffic);
+        System.out.println(srcDstPair + " " + path.getPathNodeIdList() + " " + feasibleTraffic);
         Metrics.addToOuptut(srcDstPair, path, feasibleTraffic);
       }
     }
@@ -92,7 +92,7 @@ public class InterRackTx {
   private int leastSignificantOne(int value) {
     int result = 0;
     for (int i=0; i<20; i++) {
-      int tmp = (value>>i)&1;
+      int tmp = (value >> i)&1;
       if (tmp>0) {
         result = i;
         break;

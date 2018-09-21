@@ -2,8 +2,10 @@ package RHODA.architectures.common;
 
 public class Configuration {
   private static Configuration INSTANCE = null;
-  private int trafficPattern = 0;
-  private int numOfRacks = 64;
+
+  private int trafficPattern = TrafficPattern.FACEBOOK_TRAFFIC;
+
+  private int numOfRacks = 1024;
   private int numOfWavelengths = 128;
   private int wavelengthCapacity = 100;
   private int numOfTransceiversPerRack = 4;

@@ -36,6 +36,10 @@ public class Path {
     return pathNodeIdList.size();
   }
 
+  public List<Integer> getPathNodeIdList() {
+    return pathNodeIdList;
+  }
+
   @Override
   public String toString() {
     return "Path{" +

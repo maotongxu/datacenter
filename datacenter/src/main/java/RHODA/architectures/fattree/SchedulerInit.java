@@ -47,7 +47,6 @@ public class SchedulerInit {
   }
 
   public static void assignIP() {
-    System.out.println(Scheduler.sw_core.length + " " + Scheduler.sw_core[0].length);
     for (int j = 1; j <= ConfigurationFT.NUM_OF_CORE_GROUP; j++) {			// j-1 is pod index
       for (int i = 1; i <= ConfigurationFT.NUM_OF_CORE_SWITCH_PER_GROUP; i++) {		// i-1 is core index in pod j
         Scheduler.sw_core[j-1][i-1].getAddress().setAddress1(10);

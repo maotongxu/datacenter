@@ -61,7 +61,6 @@ public class IntraClusterCommunication {
 
           SrcDstPair srcDstPair = new SrcDstPair(rackIdSrc, rackIdDst);
           Metrics.addToOuptut(srcDstPair, path, bd);
-          System.out.println("Intra " + (path.pathNodeIdListSize() - 1));
         }
       }
     }

@@ -65,7 +65,11 @@ public class FatTreeTest {
   public double[][] importTestTraffic() {
     int numOfRacks = ConfigurationFT.TOTAL_NUM_OF_RACKS;
     double[][] flowMatrix = new double[numOfRacks][numOfRacks];
-    flowMatrix[2][9] = 1;
+    for (int i = 0; i < numOfRacks; i++) {
+      for (int j = 0; j < numOfRacks; j++) {
+        flowMatrix[i][j] = 1;
+      }
+    }
     return flowMatrix;
   }
 }
