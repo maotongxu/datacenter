@@ -7,7 +7,6 @@ import RHODA.architectures.common.Configuration;
 import java.util.Random;
 
 public class TrafficPattern {
-  private static final double NEGLIGIBLE_FLOW_TRAFFIC = 0.00001;
 
   private final Random rand = new Random();
   private final DataCenter dataCenter;
@@ -22,7 +21,7 @@ public class TrafficPattern {
     double[][] trafficFlow = generateTraffic();
     for (int src = 0; src < numOfRacks; src++) {
       for (int dst = 0; dst < numOfRacks; dst++) {
-        if (src == dst || trafficFlow[src][dst] < NEGLIGIBLE_FLOW_TRAFFIC) {
+        if (src == dst || trafficFlow[src][dst] < Double.MIN_VALUE) {
           continue;
         }
         Flow flow = new Flow(src, dst, trafficFlow[src][dst]);

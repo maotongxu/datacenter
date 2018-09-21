@@ -60,7 +60,6 @@ public class SchedulerInit {
     for (int x = 0; x <= ConfigurationFT.K - 1; x++) {
       for (int z = ConfigurationFT.K / 2; z <= ConfigurationFT.K - 1; z++) {
         for (int i = 0; i <= ConfigurationFT.K / 2 - 1; i++) {
-          System.out.println("z " + z + " " + (z - ConfigurationFT.K / 2));
           Scheduler.sw_agg[x][z - ConfigurationFT.K / 2].getAddress().setAddress1(10);
           Scheduler.sw_agg[x][z - ConfigurationFT.K / 2].getAddress().setAddress2(x);
           Scheduler.sw_agg[x][z - ConfigurationFT.K / 2].getAddress().setAddress3(z);

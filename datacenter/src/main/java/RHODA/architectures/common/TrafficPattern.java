@@ -19,8 +19,6 @@ public class TrafficPattern {
   private static final int numOfRacks = Configuration.getInstance().getNumOfRacks();
   private static final Random rand = new Random();
 
-  private static final double NEGLIGIBLE_FLOW_TRAFFIC = 0.00001;
-
   private final DataCenter dataCenter;
 
   public TrafficPattern(final DataCenter dataCenter) {
@@ -129,7 +127,7 @@ public class TrafficPattern {
   private void loadTrafficToRacks(final double[][] flowMatrix) {
     for (int src = 0; src < numOfRacks; src++) {
       for (int dst = 0; dst < numOfRacks; dst++) {
-        if (src == dst || flowMatrix[src][dst] < NEGLIGIBLE_FLOW_TRAFFIC) {
+        if (src == dst || flowMatrix[src][dst] < Double.MIN_VALUE) {
           continue;
         }
         Flow flow = new Flow(src, dst, flowMatrix[src][dst]);

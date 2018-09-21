@@ -11,7 +11,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class IntraClusterCommunication {
-  private static final double NEGLIGIBLE_FLOW_TRAFFIC = 0.00001;
 
   private final Scheduler scheduler;
   private final DataCenterRHODA dataCenterRHODA;
@@ -44,7 +43,7 @@ public class IntraClusterCommunication {
           Path path = paths.get(new SrcDstPair(
               rackRHODASrc.getRackIdWithinCluster(), rackIdDstWithinCluster));
           double bd = routingWithinCluster.startRouting(cluster, path, flow.getTraffic());
-          if (bd <= NEGLIGIBLE_FLOW_TRAFFIC) {
+          if (bd <= Double.MIN_VALUE) {
             continue;
           }
 

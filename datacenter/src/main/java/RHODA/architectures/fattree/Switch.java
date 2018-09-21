@@ -51,29 +51,29 @@ public class Switch {
           address.getAddress3() == flowFT.getAddressDst().getAddress3()) {
         // Tx to a host
         FlowInfo flowInfo = new FlowInfo(flowFT.getTrafficUnit(), flowFT.getNumOfHops());
-        System.out.println("Send to host " + flowInfo);
+//        System.out.println("Send to host " + flowInfo);
 
         Metrics.srcDstPairFlowInfoMap.put(flowFT.getSrcDstPair(), flowInfo);
 
       } else {
-        portUp++;
-        System.out.println("sw_edge Send to sw_agg");
+//        System.out.println("sw_edge Send to sw_agg");
         Scheduler.sw_agg[switchId1][portUp % (ConfigurationFT.K / 2)].rxFlow(flowFT);
+        portUp++;
       }
     } else if (switchType == AGG_SWITCH) {
       if (address.getAddress2() == flowFT.getAddressDst().getAddress2()) {
-        portDown++;
-        System.out.println("sw_agg Send to sw_edge");
+//        System.out.println("sw_agg Send to sw_edge");
         Scheduler.sw_edge[switchId1][flowFT.getAddressDst().getAddress3()].rxFlow(flowFT);
+        portDown++;
       } else {
-        portUp++;
-        System.out.println("sw_agg Send to sw_core");
+//        System.out.println("sw_agg Send to sw_core");
         Scheduler.sw_core[switchId2][surPort - ConfigurationFT.K / 2].rxFlow(flowFT);
+        portUp++;
       }
     } else if (switchType == CORE_SWITCH) {
-      portDown++;
-      System.out.println("sw_core Send to sw_agg");
+//      System.out.println("sw_core Send to sw_agg");
       Scheduler.sw_agg[flowFT.getAddressDst().getAddress2()][switchId1].rxFlow(flowFT);
+      portDown++;
     } else {
       throw new IllegalArgumentException("No such switch " + switchType);
     }

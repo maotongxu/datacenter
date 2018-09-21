@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class InterRackCommunication {
-  private static final double NEGLIGIBLE_FLOW_TRAFFIC = 0.00001;
   private final DataCenter dataCenter;
   private final Map<SrcDstPair, Path> paths;
   private final RoutingRack routing;
@@ -32,7 +31,7 @@ public class InterRackCommunication {
         SrcDstPair srcDstPair = new SrcDstPair(flow.getNodeIdSrc(), flow.getNodeIdDst());
         Path path = paths.get(srcDstPair);
         double bd = routing.startRouting(dataCenter, path, flow.getTraffic());
-        if (bd < NEGLIGIBLE_FLOW_TRAFFIC) {
+        if (bd < Double.MIN_VALUE) {
           continue;
         }
 

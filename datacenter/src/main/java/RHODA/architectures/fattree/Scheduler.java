@@ -5,19 +5,19 @@ import RHODA.architectures.common.TrafficPattern;
 import RHODA.architectures.output.Metrics;
 
 public class Scheduler {
-  static Switch[][] sw_core;
-  static Switch[][] sw_agg;
-  static Switch[][] sw_edge;
-  static Host[][][] host;
+  public static Switch[][] sw_core;
+  public static Switch[][] sw_agg;
+  public static Switch[][] sw_edge;
+  public static Host[][][] host;
 
-  public void start() {
+  public static void start() {
+    ConfigurationFT.setConfBasedOnMinNumOfRacks(Configuration.getInstance().getNumOfRacks());
+    Configuration.getInstance().setNumOfRacks(ConfigurationFT.TOTAL_NUM_OF_RACKS);
+
     SchedulerInit.initScheduler();
     SchedulerInit.initSwitch();
     SchedulerInit.assignIP();
 
-    ConfigurationFT.setConfBasedOnMinNumOfRacks(Configuration.getInstance().getNumOfRacks());
-    Configuration.getInstance().setNumOfRacks(ConfigurationFT.TOTAL_NUM_OF_RACKS);
-    
     double[][] flowMatrix = TrafficPattern.generateFlowMatrix();
     Routing.loadTrafficToHosts(flowMatrix);
     Routing.txPktUp();
@@ -25,7 +25,7 @@ public class Scheduler {
     outputSwitchLoad();
   }
 
-  private void outputSwitchLoad() {
+  public static void outputSwitchLoad() {
     int switchId = 0;
     for (int i = 0; i < ConfigurationFT.NUM_OF_CORE_GROUP; i++) {
       for (int j = 0; j < ConfigurationFT.NUM_OF_CORE_SWITCH_PER_GROUP; j++) {
@@ -53,6 +53,7 @@ public class Scheduler {
     Metrics.init();
     Scheduler scheduler = new Scheduler();
     scheduler.start();
+    outputSwitchLoad();
     System.out.println("NumOfHops " + Metrics.calculateAvgNumOfHops() +
         " AvgRackLoad " + Metrics.calculateAvgRackLoad() +
         " TotalTraffic " + Metrics.calculateTotalTraffic());
